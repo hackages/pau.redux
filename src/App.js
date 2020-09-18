@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+function Display(props) {
+  return <h1>Counter: {props.counter}</h1>;
+}
+
+function Button(props) {
+  return <button onClick={props.count}>{props.sign}</button>;
+}
+
+function Counter() {
+  const [counter, setCounter] = useState(0);
+
+  function inc() {
+    setCounter(counter + 1);
+  }
+  function dec() {
+    setCounter(counter - 1);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Display counter={counter} />
+      <Button sign={"+"} count={inc}></Button>
+      <Button sign={"-"} count={dec}></Button>
     </div>
   );
 }
 
-export default App;
+export default Counter;
